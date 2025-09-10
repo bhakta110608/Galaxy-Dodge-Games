@@ -1,0 +1,162 @@
+/* === Import font Arcade === */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* === Global Body Galaxy === */
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 30%, #1a1a2e 0%, #0d0d1a 50%, #000000 100%);
+  position: relative;
+}
+
+/* Lapisan bintang bergerak */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250%;
+  height: 250%;
+  background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  background-size: contain;
+  animation: starsMove 80s linear infinite;
+  z-index: -2;
+  opacity: 0.4;
+}
+
+/* Lapisan bintang kelap-kelip */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250%;
+  height: 250%;
+  background: transparent url('https://www.transparenttextures.com/patterns/tiny-stars.png') repeat;
+  background-size: contain;
+  animation: starsTwinkle 5s ease-in-out infinite alternate;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+@keyframes starsMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+@keyframes starsTwinkle {
+  0%   { opacity: 0.2; }
+  50%  { opacity: 0.9; }
+  100% { opacity: 0.4; }
+}
+
+/* === Game Canvas === */
+canvas {
+ canvas {
+  background: transparent !important;
+}
+
+  border: 3px solid #bb86fc;
+  border-radius: 18px;
+  width: 90vw;
+  height: 70vh;
+  max-width: 600px;
+  max-height: 600px;
+  box-shadow: 
+    0 0 20px #bb86fc,
+    0 0 50px rgba(187, 134, 252, 0.6),
+    inset 0 0 25px rgba(0, 191, 255, 0.25);
+  animation: canvasGlow 4s ease-in-out infinite alternate;
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+@keyframes canvasGlow {
+  from { box-shadow: 0 0 20px #bb86fc, 0 0 40px rgba(187, 134, 252, 0.6); }
+  to   { box-shadow: 0 0 35px #00eaff, 0 0 70px rgba(0, 234, 255, 0.8); }
+}
+
+
+/* === Control Buttons === */
+.controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 25px;
+  z-index: 2;
+}
+
+button {
+  font-size: 18px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: linear-gradient(145deg, #6a11cb, #2575fc);
+  border: 2px solid #fff;
+  box-shadow: 
+    0 0 15px rgba(106, 17, 203, 0.7),
+    0 0 35px rgba(37, 117, 252, 0.6);
+  transition: all 0.25s ease-in-out;
+}
+
+/* Hover effect */
+button:hover {
+  transform: scale(1.12);
+  box-shadow: 
+    0 0 25px #6a11cb,
+    0 0 60px rgba(37, 117, 252, 0.9),
+    inset 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Klik effect */
+button:active {
+  transform: scale(0.95);
+  background: linear-gradient(145deg, #2575fc, #6a11cb);
+}
+
+/* Tombol Naik Turun */
+.btn-control {
+  background: linear-gradient(145deg, #ff6ec4, #7873f5);
+}
+.btn-control:hover {
+  box-shadow: 0 0 20px #ff6ec4, 0 0 50px rgba(255, 110, 196, 0.8);
+}
+.btn-control:active {
+  transform: scale(0.9) rotate(-2deg);
+}
+
+/* Tombol Restart */
+#btnRestart {
+  display: none;
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 16px 26px;
+  background: linear-gradient(145deg, #00c9ff, #92fe9d);
+  border: 2px solid #fff;
+  box-shadow: 
+    0 0 25px #00c9ff,
+    0 0 60px rgba(0, 201, 255, 0.9),
+    0 0 80px rgba(146, 254, 157, 0.7);
+}
+#btnRestart:hover {
+  transform: scale(1.15);
+  box-shadow: 
+    0 0 35px #00c9ff,
+    0 0 70px rgba(0, 201, 255, 1),
+    0 0 100px rgba(146, 254, 157, 1);
+}
+#btnRestart:active {
+  transform: rotate(-3deg) scale(0.92);
+  background: linear-gradient(145deg, #0096c7, #48cae4);
+}
